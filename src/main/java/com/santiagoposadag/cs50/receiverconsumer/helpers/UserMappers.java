@@ -20,6 +20,7 @@ public class UserMappers {
             userDto.setId(user.getId());
             userDto.setName(user.getName());
             userDto.setLastName(user.getLastName());
+            userDto.setDni(user.getDni());
             userDto.setRoutingKey(user.getRoutingKey());
             return userDto;
         };
@@ -36,6 +37,7 @@ public class UserMappers {
             user.setId(userDto.getId());
             user.setName(userDto.getName());
             user.setLastName(userDto.getLastName());
+            user.setDni(userDto.getDni());
             user.setRoutingKey(userDto.getRoutingKey());
             return user;
         };

@@ -16,5 +16,6 @@ public class User {
     private String Id;
     private String name;
     private String lastName;
+    private String dni;
     private String routingKey;
 }

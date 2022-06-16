@@ -4,7 +4,9 @@ package com.santiagoposadag.cs50.receiverconsumer.routers;
 import com.santiagoposadag.cs50.receiverconsumer.dto.BoughtCryptoCurrencyDto;
 import com.santiagoposadag.cs50.receiverconsumer.dto.CryptoCurrencyDto;
 import com.santiagoposadag.cs50.receiverconsumer.dto.SoldCryptoCurrencyDto;
+import com.santiagoposadag.cs50.receiverconsumer.dto.UserDto;
 import com.santiagoposadag.cs50.receiverconsumer.usecases.GetAllActionsFromAUserUseCase;
+import com.santiagoposadag.cs50.receiverconsumer.usecases.GetAllUsersUseCase;
 import com.santiagoposadag.cs50.receiverconsumer.usecases.GetBuyActionsFromAUserUseCase;
 import com.santiagoposadag.cs50.receiverconsumer.usecases.GetSellActionsFromAUserUseCase;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +55,18 @@ public class QueryRouter {
                         .body(BodyInserters.fromPublisher(
                                 getSellActionsFromAUserUseCase.apply(request.pathVariable("userId")),
                                 SoldCryptoCurrencyDto.class
+                        ))
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> getAllUsersRoute(GetAllUsersUseCase getAllUsersUseCase){
+        return route(GET("/getAllUsers"),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(
+                                getAllUsersUseCase.get(),
+                                UserDto.class
                         ))
         );
     }
